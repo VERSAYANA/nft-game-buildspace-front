@@ -12,8 +12,8 @@ import "./App.css";
 import Arena from "./Components/Arena";
 
 // Constants
-// const TWITTER_HANDLE = "_buildspace";
-// const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+const TWITTER_HANDLE = "VERSAYANA";
+const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
@@ -29,24 +29,24 @@ const App = () => {
       const { ethereum } = window;
 
       if (!ethereum) {
-        console.log("Make sure you have MetaMask!");
+        // console.log("Make sure you have MetaMask!");
         return;
       } else {
-        console.log("We have the ethereum object", ethereum);
+        // console.log("We have the ethereum object", ethereum);
 
         const accounts = await ethereum.request({ method: "eth_accounts" });
 
         if (accounts.length !== 0) {
           const account = accounts[0];
-          console.log("Found an authorized account:", account);
+          // console.log("Found an authorized account:", account);
           setCurrentAccount(account);
         } else {
-          console.log("No authorized account found");
+          // console.log("No authorized account found");
           setIsLoading(false);
         }
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -63,10 +63,10 @@ const App = () => {
         method: "eth_requestAccounts",
       });
 
-      console.log("Connected", accounts[0]);
+      // console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -88,10 +88,10 @@ const App = () => {
 
       const txn = await gameContract.checkIfUserHasNFT();
       if (txn.name) {
-        console.log("User has character NFT", txn);
+        // console.log("User has character NFT", txn);
         setCharacterNFT(transformCharacterData(txn));
       } else {
-        console.log("No character NFT found");
+        // console.log("No character NFT found");
         setCharacterNFT(null);
 
         playChooseYourHero();
@@ -101,7 +101,7 @@ const App = () => {
     };
 
     if (currentAccount) {
-      console.log("CurrentAccount:", currentAccount);
+      // console.log("CurrentAccount:", currentAccount);
       fetchNFTMetadata();
     } else {
       // setIsLoading(false);
@@ -162,15 +162,15 @@ const App = () => {
 
           {renderContent()}
         </div>
-        {/* <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
+        <div className="footer-container">
+          {/* <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} /> */}
           <a
             className="footer-text"
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built with @${TWITTER_HANDLE}`}</a>
-        </div> */}
+          >{`@${TWITTER_HANDLE}`}</a>
+        </div>
       </div>
     </div>
   );

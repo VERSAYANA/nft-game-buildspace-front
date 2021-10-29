@@ -43,7 +43,7 @@ const Arena = ({
   useEffect(() => {
     const fetchBoss = async () => {
       const bossTxn = await gameContract.getBigBoss();
-      console.log(bossTxn);
+      // console.log(bossTxn);
       setBoss(transformCharacterData(bossTxn));
     };
 
@@ -77,10 +77,10 @@ const Arena = ({
       if (gameContract) {
         setAttackState("attacking");
         playFightingSound();
-        console.log("Attacking boss...");
+        // console.log("Attacking boss...");
         const attackTxn = await gameContract.attackBoss();
         await attackTxn.wait();
-        console.log(attackTxn);
+        // console.log(attackTxn);
         setAttackState("hit");
         stop();
 
@@ -90,7 +90,7 @@ const Arena = ({
         }, 2000);
       }
     } catch (error) {
-      console.warn(error);
+      // console.warn(error);
     }
   };
 

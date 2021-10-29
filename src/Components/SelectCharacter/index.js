@@ -25,9 +25,9 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         signer
       );
       setGameContract(gameContract);
-      console.log("gameContract:", gameContract);
+      // console.log("gameContract:", gameContract);
     } else {
-      console.log("Install MetaMasket");
+      // console.log("Install MetaMasket");
     }
   }, []);
 
@@ -74,9 +74,9 @@ const SelectCharacter = ({ setCharacterNFT }) => {
           transformCharacterData(txn)
         );
         setCharacters(characters);
-        console.log(characters);
+        // console.log(characters);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
 
@@ -87,7 +87,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
 
       if (gameContract) {
         const characterNFT = await gameContract.checkIfUserHasNFT();
-        console.log("CharacterNFT: ", characterNFT);
+        // console.log("CharacterNFT: ", characterNFT);
         setCharacterNFT(transformCharacterData(characterNFT));
       }
     };
@@ -112,11 +112,11 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         playPrepareForBattle();
         const txn = await gameContract.mintCharacterNFT(characterId);
         await txn.wait();
-        console.log("mint txn", txn);
+        // console.log("mint txn", txn);
         setMintingCharacter(false);
       }
     } catch (error) {
-      console.warn(error);
+      // console.warn(error);
       setMintingCharacter(false);
     }
   };
