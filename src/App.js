@@ -12,8 +12,8 @@ import "./App.css";
 import Arena from "./Components/Arena";
 
 // Constants
-const TWITTER_HANDLE = "_buildspace";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+// const TWITTER_HANDLE = "_buildspace";
+// const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
