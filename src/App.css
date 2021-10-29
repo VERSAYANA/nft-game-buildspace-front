@@ -3,11 +3,43 @@
   background-color: #0d1116;
   overflow: scroll;
   text-align: center;
+  /* animation-name: normal-background;
+  animation-duration: 2s; */
+}
+
+.fighting {
+  background-color: red;
+  animation-name: fighting-background;
+  animation-duration: 2s;
+}
+
+.fight-done {
+  background-color: #0d1116;
+  animation-name: normal-background;
+  animation-duration: 2s;
+}
+
+@keyframes fighting-background {
+  from {
+    background-color: #0d1116;
+  }
+  to {
+    background-color: red;
+  }
+}
+
+@keyframes normal-background {
+  from {
+    background-color: red;
+  }
+  to {
+    background-color: #0d1116;
+  }
 }
 
 .container {
   height: 100%;
-  background-color: #0d1116;
+  /* background-color: #0d1116; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,7 +51,7 @@
 
 .header {
   margin: 0;
-  font-size: 50px;
+  font-size: 32px;
   font-weight: bold;
   color: white;
 }

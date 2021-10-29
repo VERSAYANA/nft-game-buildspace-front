@@ -5,8 +5,9 @@ import LoadingIndicator from "./Components/LoadingIndicator";
 import { CONTRACT_ADDRESS, transformCharacterData } from "./constants";
 import myEpicGame from "./utils/MyEpicGame.json";
 import { ethers } from "ethers";
+import useSound from "use-sound";
 
-import twitterLogo from "./assets/twitter-logo.svg";
+// import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
 import Arena from "./Components/Arena";
 
@@ -18,6 +19,10 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [characterNFT, setCharacterNFT] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [attackState, setAttackState] = useState("");
+  const [playChooseYourHero] = useSound("/choose-your-hero2.mp3", {
+    volume: 0.5,
+  });
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -65,34 +70,6 @@ const App = () => {
     }
   };
 
-  const renderContent = () => {
-    if (isLoading) {
-      return <LoadingIndicator />;
-    }
-    if (!currentAccount) {
-      return (
-        <div className="connect-wallet-container">
-          <img
-            src="https://64.media.tumblr.com/tumblr_mbia5vdmRd1r1mkubo1_500.gifv"
-            alt="Monty Python Gif"
-          />
-          <button
-            className="cta-button connect-wallet-button"
-            onClick={connectWalletAction}
-          >
-            Connect Wallet To Get Started
-          </button>
-        </div>
-      );
-    } else if (currentAccount && !characterNFT) {
-      return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
-    } else if (currentAccount && characterNFT) {
-      return (
-        <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
-      );
-    }
-  };
-
   useEffect(() => {
     setIsLoading(true);
     checkIfWalletIsConnected();
@@ -116,6 +93,8 @@ const App = () => {
       } else {
         console.log("No character NFT found");
         setCharacterNFT(null);
+
+        playChooseYourHero();
       }
 
       setIsLoading(false);
@@ -127,14 +106,59 @@ const App = () => {
     } else {
       // setIsLoading(false);
     }
-  }, [currentAccount]);
+  }, [currentAccount, playChooseYourHero]);
+
+  // useEffect(() => {
+  //   if (characterNFT === null) {
+  //     playChooseYourHero();
+  //   }
+  // }, [characterNFT, playChooseYourHero]);
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <LoadingIndicator />;
+    }
+    if (!currentAccount) {
+      return (
+        <div className="connect-wallet-container">
+          <img src="/Aegis.jpeg" alt="Monty Python Gif" />
+          <button
+            className="cta-button connect-wallet-button"
+            onClick={connectWalletAction}
+          >
+            Connect Wallet To Get Started
+          </button>
+        </div>
+      );
+    } else if (currentAccount && !characterNFT) {
+      // playChooseYourHero();
+
+      return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
+    } else if (currentAccount && characterNFT) {
+      return (
+        <Arena
+          characterNFT={characterNFT}
+          setCharacterNFT={setCharacterNFT}
+          attackState={attackState}
+          setAttackState={setAttackState}
+        />
+      );
+    }
+  };
 
   return (
-    <div className="App">
+    <div
+      className={`App ${attackState === "attacking" ? "fighting" : ""} ${
+        attackState === "hit" ? "fight-done" : ""
+      }`}
+    >
       <div className="container">
         <div className="header-container">
-          <p className="header gradient-text">⚔️ Metaverse Slayer ⚔️</p>
-          <p className="sub-text">Team up to protect the Metaverse!</p>
+          <p className="header gradient-text">Become Immortal</p>
+          {/* <p className="header gradient-text">⚔️ Metaverse Slayer ⚔️</p> */}
+          <p className="sub-text">
+            Defeat Roshan and claim the Aegis of the Immorality!
+          </p>
 
           {renderContent()}
         </div>

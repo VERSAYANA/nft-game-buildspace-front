@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import LoadingIndicator from "../LoadingIndicator";
 import { ethers } from "ethers";
+import useSound from "use-sound";
 import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
 import myEpicGame from "../../utils/MyEpicGame.json";
 import "./Arena.css";
 
-const Arena = ({ characterNFT, setCharacterNFT }) => {
+const Arena = ({
+  characterNFT,
+  setCharacterNFT,
+  attackState,
+  setAttackState,
+}) => {
   const [gameContract, setGameContract] = useState(null);
   const [boss, setBoss] = useState(null);
-  const [attackState, setAttackState] = useState("");
+  // const [attackState, setAttackState] = useState("");
   const [showToast, setShowToast] = useState(false);
+
+  const [playFightingSound] = useSound("/fighitng.mp3", { volume: 0.5 });
 
   useEffect(() => {
     const { ethereum } = window;
@@ -65,6 +73,7 @@ const Arena = ({ characterNFT, setCharacterNFT }) => {
     try {
       if (gameContract) {
         setAttackState("attacking");
+        playFightingSound();
         console.log("Attacking boss...");
         const attackTxn = await gameContract.attackBoss();
         await attackTxn.wait();

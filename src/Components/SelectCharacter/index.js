@@ -4,11 +4,15 @@ import "./SelectCharacter.css";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
 import myEpicGame from "../../utils/MyEpicGame.json";
+import useSound from "use-sound";
 
 const SelectCharacter = ({ setCharacterNFT }) => {
   const [characters, setCharacters] = useState([]);
   const [gameContract, setGameContract] = useState(null);
   const [mintingCharacter, setMintingCharacter] = useState(false);
+  const [playPrepareForBattle] = useSound("/prepare-for-battle.mp3", {
+    volume: 0.5,
+  });
 
   useEffect(() => {
     const { ethereum } = window;
@@ -64,7 +68,6 @@ const SelectCharacter = ({ setCharacterNFT }) => {
   useEffect(() => {
     const getCharacters = async () => {
       try {
-        setMintingCharacter(true);
         console.log("Getting contract characters to mint");
         const characterTxns = await gameContract.getAllDefaultCharacters();
         const characters = characterTxns.map((txn) =>
@@ -72,10 +75,8 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         );
         setCharacters(characters);
         console.log(characters);
-        setMintingCharacter(false);
       } catch (error) {
         console.error(error);
-        setMintingCharacter(false);
       }
     };
 
@@ -107,12 +108,16 @@ const SelectCharacter = ({ setCharacterNFT }) => {
   const mintCharacterNFTAction = async (characterId) => {
     try {
       if (gameContract) {
+        setMintingCharacter(true);
+        playPrepareForBattle();
         const txn = await gameContract.mintCharacterNFT(characterId);
         await txn.wait();
         console.log("mint txn", txn);
+        setMintingCharacter(false);
       }
     } catch (error) {
       console.warn(error);
+      setMintingCharacter(false);
     }
   };
 
@@ -133,7 +138,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
 
   return (
     <div className="select-character-container">
-      <h2>Mint Your Hero. Choose wisely.</h2>
+      <h2>Choose Your Hero.</h2>
       {characters.length > 0 && (
         <div className="character-grid">{renderCharacters()}</div>
       )}
