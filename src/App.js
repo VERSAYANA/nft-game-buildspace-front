@@ -121,7 +121,7 @@ const App = () => {
     if (!currentAccount) {
       return (
         <div className="connect-wallet-container">
-          <img src="/Aegis.jpeg" alt="Aegis" />
+          <img src="/Aegis.jpeg" alt="Monty Python Gif" />
           <button
             className="cta-button connect-wallet-button"
             onClick={connectWalletAction}

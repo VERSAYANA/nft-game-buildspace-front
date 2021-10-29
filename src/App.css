@@ -1,6 +1,6 @@
 .App {
   height: 100vh;
-  background-color: #253051;
+  background-color: #0d1116;
   overflow: scroll;
   text-align: center;
   /* animation-name: normal-background;
@@ -53,12 +53,12 @@
   margin: 0;
   font-size: 32px;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.87);
+  color: white;
 }
 
 .sub-text {
   font-size: 25px;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
 }
 
 .content-container {
@@ -74,7 +74,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
   color: white;
 }
 
@@ -86,14 +86,11 @@
 }
 
 .connect-wallet-container img {
-  border-radius: 5px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .connect-wallet-button {
-  background-color: #9facc4;
-  color: rgba(0, 0, 0, 0.87);
-  /* background-image: linear-gradient(
+  background-image: linear-gradient(
     to right,
     #ff8177 0%,
     #ff867a 0%,
@@ -101,9 +98,9 @@
     #f99185 52%,
     #cf556c 78%,
     #b12a5b 100%
-  ); */
-  /* background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite; */
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
 }
 
 .mint-button {
