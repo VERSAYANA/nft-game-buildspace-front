@@ -21,7 +21,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [attackState, setAttackState] = useState("");
   const [playChooseYourHero] = useSound("/choose-your-hero2.mp3", {
-    volume: 0.5,
+    volume: 0.6,
   });
 
   const checkIfWalletIsConnected = async () => {

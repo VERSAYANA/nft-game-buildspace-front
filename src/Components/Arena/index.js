@@ -87,7 +87,7 @@ const Arena = ({
         setShowToast(true);
         setTimeout(() => {
           setShowToast(false);
-        }, 3000);
+        }, 2000);
       }
     } catch (error) {
       console.warn(error);
@@ -97,11 +97,11 @@ const Arena = ({
   return (
     <div className="arena-container">
       {/* Add your toast HTML right here */}
-      {/* {boss && (
+      {boss && (
         <div id="toast" className={showToast ? "show" : ""}>
           <div id="desc">{`💥 ${boss.name} was hit for ${characterNFT.attackDamage}!`}</div>
         </div>
-      )} */}
+      )}
 
       {/* Boss */}
       {boss && (
