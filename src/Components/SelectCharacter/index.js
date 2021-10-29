@@ -31,40 +31,6 @@ const SelectCharacter = ({ setCharacterNFT }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const getCharacters = async () => {
-  //     try {
-  //       console.log("Getting contract characters to mint");
-
-  //       /*
-  //        * Call contract to get all mint-able characters
-  //        */
-  //       const charactersTxn = await gameContract.getAllDefaultCharacters();
-  //       console.log("charactersTxn:", charactersTxn);
-
-  //       /*
-  //        * Go through all of our characters and transform the data
-  //        */
-  //       const characters = charactersTxn.map((characterData) =>
-  //         transformCharacterData(characterData)
-  //       );
-
-  //       /*
-  //        * Set all mint-able characters in state
-  //        */
-  //       setCharacters(characters);
-  //     } catch (error) {
-  //       console.error("Something went wrong fetching characters:", error);
-  //     }
-  //   };
-
-  //   /*
-  //    * If our gameContract is ready, let's get characters!
-  //    */
-  //   if (gameContract) {
-  //     getCharacters();
-  //   }
-  // }, [gameContract]);
   useEffect(() => {
     const getCharacters = async () => {
       try {
@@ -124,15 +90,19 @@ const SelectCharacter = ({ setCharacterNFT }) => {
   const renderCharacters = () =>
     characters.map((character, index) => (
       <div className="character-item" key={character.name}>
-        <div className="name-container">
-          <p>{character.name}</p>
-        </div>
         <img src={character.imageURI} alt={character.name} />
-        <button
-          type="button"
-          className="character-mint-button"
-          onClick={() => mintCharacterNFTAction(index)}
-        >{`Mint ${character.name}`}</button>
+        <div className="character-details">
+          <p className="character-name">{character.name}</p>
+          <div className="character-attrs">
+            <p>Health Point: {character.maxHp}</p>
+            <p>Attack Damage: {character.attackDamage}</p>
+          </div>
+          <button
+            type="button"
+            className="character-mint-button"
+            onClick={() => mintCharacterNFTAction(index)}
+          >{`Mint ${character.name}`}</button>
+        </div>
       </div>
     ));
 
