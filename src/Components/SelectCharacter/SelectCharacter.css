@@ -1,49 +1,10 @@
-/* .ch-item {
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  width: 400px;
-}
-
-.ch-item img {
-  height: 400px;
-  width: 400px;
-  object-fit: cover;
-} */
-
-/* .ch-item .item-desc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #9facc4;
-  color: rgba(0, 0, 0, 0.87);
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-} */
-
-/* .ch-item .item-desc {
-  height: 40px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #9facc4;
-  color: rgba(0, 0, 0, 0.87);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .select-character-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgba(0, 0, 0, 0.87);
+  color: white;
 }
 
 .select-character-container .character-grid {
@@ -63,7 +24,7 @@
 }
 
 .character-item img {
-  height: 350px;
+  height: 300px;
   width: 350px;
   border-radius: 10px;
   object-fit: cover;
@@ -79,7 +40,7 @@
 .character-item .name-container p {
   margin: 0;
   padding: 5px 10px 5px 10px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .character-item .character-mint-button {
@@ -91,79 +52,30 @@
   border-bottom-right-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: #2b2d42;
-  color: rgba(255, 255, 255, 0.87);
-  font-weight: 400;
+  background-color: rgb(32, 129, 226);
+  color: white;
+  font-weight: bold;
   font-size: 16px;
-} */
-
-.character-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* grid-template-columns: 1fr 1fr 1fr; */
 }
 
-.character-item {
-  display: flex;
-  margin: 16px 32px;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
-}
-
-.character-details {
-  display: flex;
-  flex-direction: column;
-  background-color: #4b4e66;
-  color: rgba(255, 255, 255, 0.87);
-}
-
-.character-name {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 8px 0;
-}
-
-.character-attrs {
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-}
-.character-attrs p {
-  margin: 8px 16px;
-}
-
-.character-mint-button {
-  border: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  height: 36px;
-  font-size: 14px;
-  background-color: #253051;
-  color: rgba(255, 255, 255, 0.87);
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.loading {
+.select-character-container .loading {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 75px;
 }
 
-.loading .indicator {
+.select-character-container .loading .indicator {
   display: flex;
 }
 
-.loading .indicator p {
-  font-weight: 400;
+.select-character-container .loading .indicator p {
+  font-weight: bold;
   font-size: 28px;
   padding-left: 5px;
 }
 
-.loading img {
+.select-character-container .loading img {
   width: 450px;
   padding-top: 25px;
 }
