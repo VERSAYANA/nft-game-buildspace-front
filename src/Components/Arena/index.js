@@ -17,7 +17,10 @@ const Arena = ({
   // const [attackState, setAttackState] = useState("");
   const [showToast, setShowToast] = useState(false);
 
-  const [playFightingSound] = useSound("/fighitng.mp3", { volume: 0.5 });
+  const [playFightingSound, { stop }] = useSound("/fighitng.mp3", {
+    volume: 0.5,
+    loop: true,
+  });
 
   useEffect(() => {
     const { ethereum } = window;
@@ -79,6 +82,7 @@ const Arena = ({
         await attackTxn.wait();
         console.log(attackTxn);
         setAttackState("hit");
+        stop();
 
         setShowToast(true);
         setTimeout(() => {
@@ -103,7 +107,7 @@ const Arena = ({
       {boss && (
         <div className="boss-container">
           <div className={`boss-content  ${attackState}`}>
-            <h2>🔥 {boss.name} 🔥</h2>
+            <h2>{boss.name}</h2>
             <div className="image-content">
               <img src={boss.imageURI} alt={`Boss ${boss.name}`} />
               <div className="health-bar">
@@ -114,7 +118,7 @@ const Arena = ({
           </div>
           <div className="attack-container">
             <button className="cta-button" onClick={runAttackAction}>
-              {`💥 Attack ${boss.name}`}
+              {`Attack ${boss.name}`}
             </button>
           </div>
           {attackState === "attacking" && (
@@ -144,7 +148,7 @@ const Arena = ({
                 </div>
               </div>
               <div className="stats">
-                <h4>{`⚔️ Attack Damage: ${characterNFT.attackDamage}`}</h4>
+                <h4>{`Attack Damage: ${characterNFT.attackDamage}`}</h4>
               </div>
             </div>
           </div>

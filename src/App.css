@@ -1,6 +1,6 @@
 .App {
   height: 100vh;
-  background-color: #0d1116;
+  background-color: #2b2d42;
   overflow: scroll;
   text-align: center;
   /* animation-name: normal-background;
@@ -8,32 +8,32 @@
 }
 
 .fighting {
-  background-color: red;
+  background-color: #821415;
   animation-name: fighting-background;
   animation-duration: 2s;
 }
 
 .fight-done {
-  background-color: #0d1116;
+  background-color: #2b2d42;
   animation-name: normal-background;
   animation-duration: 2s;
 }
 
 @keyframes fighting-background {
   from {
-    background-color: #0d1116;
+    background-color: #2b2d42;
   }
   to {
-    background-color: red;
+    background-color: #821415;
   }
 }
 
 @keyframes normal-background {
   from {
-    background-color: red;
+    background-color: #821415;
   }
   to {
-    background-color: #0d1116;
+    background-color: #2b2d42;
   }
 }
 
@@ -53,12 +53,12 @@
   margin: 0;
   font-size: 32px;
   font-weight: bold;
-  color: white;
+  color: rgba(255, 255, 255, 0.87);
 }
 
 .sub-text {
   font-size: 25px;
-  color: white;
+  color: rgba(255, 255, 255, 0.87);
 }
 
 .content-container {
@@ -75,7 +75,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .connect-wallet-container {
@@ -92,12 +92,12 @@
 .connect-wallet-button {
   background-image: linear-gradient(
     to right,
-    #ff8177 0%,
-    #ff867a 0%,
-    #ff8c7f 21%,
-    #f99185 52%,
-    #cf556c 78%,
-    #b12a5b 100%
+    #abb4c4 0%,
+    #a0aabb 0%,
+    #a0aabb 21%,
+    #8d99ae 52%,
+    #8894aa 78%,
+    #7c89a2 100%
   );
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
