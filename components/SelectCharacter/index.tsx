@@ -1,37 +1,36 @@
-import { useEffect, useState } from "react";
-import LoadingIndicator from "../LoadingIndicator";
-import "./SelectCharacter.css";
-import { ethers } from "ethers";
-import { CONTRACT_ADDRESS, transformCharacterData } from "../../constants";
-import myEpicGame from "../../utils/MyEpicGame.json";
-import useSound from "use-sound";
+import { useEffect, useState } from 'react'
+import LoadingIndicator from '../LoadingIndicator'
+import { ethers } from 'ethers'
+import { CONTRACT_ADDRESS, transformCharacterData } from '../../constants'
+import myEpicGame from '../../utils/MyEpicGame.json'
+import useSound from 'use-sound'
 
 // declare let window: any;
 
 const SelectCharacter = ({ setCharacterNFT }: any) => {
-  const [characters, setCharacters] = useState([]);
-  const [gameContract, setGameContract] = useState(null);
-  const [mintingCharacter, setMintingCharacter] = useState(false);
-  const [playPrepareForBattle] = useSound("/prepare-for-battle.mp3", {
+  const [characters, setCharacters] = useState([])
+  const [gameContract, setGameContract] = useState(null)
+  const [mintingCharacter, setMintingCharacter] = useState(false)
+  const [playPrepareForBattle] = useSound('/prepare-for-battle.mp3', {
     volume: 0.5,
-  });
+  })
 
   useEffect(() => {
-    const { ethereum } = window as any;
+    const { ethereum } = window as any
     if (ethereum) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
+      const provider = new ethers.providers.Web3Provider(ethereum)
+      const signer = provider.getSigner()
       const gameContract = new ethers.Contract(
         CONTRACT_ADDRESS,
         myEpicGame.abi,
         signer
-      );
-      setGameContract(gameContract);
+      )
+      setGameContract(gameContract)
       // console.log("gameContract:", gameContract);
     } else {
       // console.log("Install MetaMasket");
     }
-  }, []);
+  }, [])
 
   // useEffect(() => {
   //   const getCharacters = async () => {
@@ -70,58 +69,58 @@ const SelectCharacter = ({ setCharacterNFT }: any) => {
   useEffect(() => {
     const getCharacters = async () => {
       try {
-        console.log("Getting contract characters to mint");
-        const characterTxns = await gameContract.getAllDefaultCharacters();
+        console.log('Getting contract characters to mint')
+        const characterTxns = await gameContract.getAllDefaultCharacters()
         const characters = characterTxns.map((txn) =>
           transformCharacterData(txn)
-        );
-        setCharacters(characters);
+        )
+        setCharacters(characters)
         // console.log(characters);
       } catch (error) {
         // console.error(error);
       }
-    };
+    }
 
     const onCharacterMinted = async (sender, tokenId, characterIndex) => {
       console.log(
         `CharacterNFTMinted - sender: ${sender} tokenId: ${tokenId.toNumber()} characterIndex: ${characterIndex.toNumber()}`
-      );
+      )
 
       if (gameContract) {
-        const characterNFT = await gameContract.checkIfUserHasNFT();
+        const characterNFT = await gameContract.checkIfUserHasNFT()
         // console.log("CharacterNFT: ", characterNFT);
-        setCharacterNFT(transformCharacterData(characterNFT));
+        setCharacterNFT(transformCharacterData(characterNFT))
       }
-    };
+    }
 
     if (gameContract) {
-      getCharacters();
+      getCharacters()
 
-      gameContract.on("CharacterNFTMinted", onCharacterMinted);
+      gameContract.on('CharacterNFTMinted', onCharacterMinted)
     }
 
     return () => {
       if (gameContract) {
-        gameContract.off("CharacterNFTMinted", onCharacterMinted);
+        gameContract.off('CharacterNFTMinted', onCharacterMinted)
       }
-    };
-  }, [gameContract, setCharacterNFT]);
+    }
+  }, [gameContract, setCharacterNFT])
 
   const mintCharacterNFTAction = async (characterId) => {
     try {
       if (gameContract) {
-        setMintingCharacter(true);
-        playPrepareForBattle();
-        const txn = await gameContract.mintCharacterNFT(characterId);
-        await txn.wait();
+        setMintingCharacter(true)
+        playPrepareForBattle()
+        const txn = await gameContract.mintCharacterNFT(characterId)
+        await txn.wait()
         // console.log("mint txn", txn);
-        setMintingCharacter(false);
+        setMintingCharacter(false)
       }
     } catch (error) {
       // console.warn(error);
-      setMintingCharacter(false);
+      setMintingCharacter(false)
     }
-  };
+  }
 
   const renderCharacters = () =>
     characters.map((character, index) => (
@@ -137,7 +136,7 @@ const SelectCharacter = ({ setCharacterNFT }: any) => {
           onClick={() => mintCharacterNFTAction(index)}
         >{`Mint ${character.name}`}</button>
       </div>
-    ));
+    ))
 
   return (
     <div className="select-character-container">
@@ -158,7 +157,7 @@ const SelectCharacter = ({ setCharacterNFT }: any) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SelectCharacter;
+export default SelectCharacter

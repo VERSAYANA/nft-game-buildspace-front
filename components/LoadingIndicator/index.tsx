@@ -1,5 +1,3 @@
-import "./LoadingIndicator.css";
-
 const LoadingIndicator = () => {
   return (
     <div className="lds-ring">
@@ -8,7 +6,7 @@ const LoadingIndicator = () => {
       <div></div>
       <div></div>
     </div>
-  );
-};
+  )
+}
 
-export default LoadingIndicator;
+export default LoadingIndicator
