@@ -158,9 +158,11 @@ const App = () => {
           <p className="header gradient-text">Become Immortal</p>
           {/* <p className="header gradient-text">⚔️ Metaverse Slayer ⚔️</p> */}
           <p className="sub-text">
-            Defeat Roshan and claim the Aegis of the Immorality! (Use Goerli
-            test network)
+            Defeat Roshan and claim the Aegis of the Immorality!
           </p>
+          {isLoading ? (
+            <p className="sub-text">Use Goerli test network</p>
+          ) : null}
 
           {renderContent()}
         </div>
