@@ -30,6 +30,7 @@ const App = () => {
 
       if (!ethereum) {
         // console.log("Make sure you have MetaMask!");
+        alert("Install MetaMask extension");
         return;
       } else {
         // console.log("We have the ethereum object", ethereum);
@@ -126,7 +127,7 @@ const App = () => {
             className="cta-button connect-wallet-button"
             onClick={connectWalletAction}
           >
-            Connect Wallet To Get Started
+            Connect Wallet To Get Started (Goerli test network)
           </button>
         </div>
       );
@@ -157,7 +158,8 @@ const App = () => {
           <p className="header gradient-text">Become Immortal</p>
           {/* <p className="header gradient-text">⚔️ Metaverse Slayer ⚔️</p> */}
           <p className="sub-text">
-            Defeat Roshan and claim the Aegis of the Immorality!
+            Defeat Roshan and claim the Aegis of the Immorality! (Use Goerli
+            test network)
           </p>
 
           {renderContent()}
